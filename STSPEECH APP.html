@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhumi's Workbook</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            text-align: center;
+            background-color: #e6f7ff;
+            margin: 0;
+            padding: 0;
+            /* Allows scrolling for the larger images */
+            overflow-x: hidden; 
+        }
+        h1 {
+            color: #0059b3;
+            margin: 15px 0;
+            font-size: 28px;
+        }
+        .image-container {
+            width: 100%;
+            /* Adds padding at the bottom so the floating buttons don't cover the picture */
+            padding-bottom: 100px; 
+        }
+        img {
+            width: 100%; /* Forces the image to take up the full width of the tablet */
+            max-width: 1000px; /* Keeps it from getting too stretched on huge screens */
+            height: auto; /* Lets the height grow naturally so it doesn't squish */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* This keeps the buttons glued to the bottom of the screen */
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #0080ff;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+        button:active {
+            background-color: #0059b3;
+            transform: translateY(2px);
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bhumi's "ST" Sound Practice</h1>
+
+    <div class="image-container">
+        <!-- Starts on the first page -->
+        <img id="workbook-page" src="8301.png" alt="Workbook Page">
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn" onclick="changePage(-1)" disabled>⬅️ Back</button>
+        <button id="next-btn" onclick="changePage(1)">Next ➡️</button>
+    </div>
+
+    <script>
+        const pages = [
+            '8301.png', '8302.png', '8303.png', '8304.png', 
+            '8305.png', '8306.png', '8307.png', '8308.png', 
+            '8309.png', '8310.png'
+        ];
+        
+        let currentIndex = 0;
+
+        function changePage(direction) {
+            currentIndex += direction;
+            
+            document.getElementById('workbook-page').src = pages[currentIndex];
+
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === pages.length - 1;
+
+            // Automatically scrolls back to the top when you go to a new page
+            window.scrollTo(0, 0); 
+        }
+    </script>
+
+</body>
+</html>
